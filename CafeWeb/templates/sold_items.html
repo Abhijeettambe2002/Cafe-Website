@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sold Items</title>
+</head>
+<body>
+    <h1>Sold Items</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Coffee</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Amount Paid</th>
+                <th>Payment Method</th>
+                <th>Card Number</th>
+                <th>Expiry Date</th>
+                <th>UPI</th>
+                <th>Sold On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in sold_items %}
+            <tr>
+                <td>{{ item.user.username }}</td>
+                <td>{{ item.coffee.name }}</td>
+                <td>{{ item.size.get_size_display }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.amount_paid }}</td>
+                <td>{{ item.payment_method }}</td>
+                <td>{{ item.card_num }}</td>
+                <td>{{ item.expiry_date }}</td>
+                <td>{{ item.upi }}</td>
+                <td>{{ item.sold_on }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

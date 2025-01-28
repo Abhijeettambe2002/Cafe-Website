@@ -1,0 +1,14 @@
+<!-- filepath: /c:/Users/Abhijeet/Cafe Web/CafeWeb/templates/update_address.html -->
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Update Address{% endblock %}
+
+{% block content %}
+<h2>Update Address</h2>
+<form method="post" class="update-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn"><i class="fas fa-edit"></i> Update</button>
+</form>
+{% endblock %}

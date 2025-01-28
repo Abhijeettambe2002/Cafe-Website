@@ -1,0 +1,178 @@
+<!-- filepath: /c:/Users/Abhijeet/Cafe Web/CafeWeb/templates/cart.html -->
+{% extends 'layout.html' %}
+
+{% block title %}Cart - Cafe Website{% endblock %}
+
+{% block content %}
+<h1>Cart Items</h1>
+
+{% if cart_items_with_prices %}
+    {% for entry in cart_items_with_prices %}
+        <div class="cart-item">
+            {% if entry.type == 'coffee' %}
+                <img src="{{ entry.item.coffee.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.coffee.name }}">
+                <h3>{{ entry.item.coffee.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_to_cart' entry.item.coffee.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_to_cart' entry.item.coffee.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more coffee</a>
+            {% elif entry.type == 'tea' %}
+                <img src="{{ entry.item.tea.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.tea.name }}">
+                <h3>{{ entry.item.tea.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_tea_to_cart' entry.item.tea.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_tea_to_cart' entry.item.tea.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more tea</a>
+            {% elif entry.type == 'juice' %}
+                <img src="{{ entry.item.juice.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.juice.name }}">
+                <h3>{{ entry.item.juice.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_beverage_to_cart' 'juice' entry.item.juice.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_beverage_to_cart' 'juice' entry.item.juice.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more juice</a>
+            {% elif entry.type == 'hot_chocolate' %}
+                <img src="{{ entry.item.hot_chocolate.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.hot_chocolate.name }}">
+                <h3>{{ entry.item.hot_chocolate.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_beverage_to_cart' 'hot_chocolate' entry.item.hot_chocolate.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_beverage_to_cart' 'hot_chocolate' entry.item.hot_chocolate.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more hot chocolate</a>
+            {% elif entry.type == 'milkshake' %}
+                <img src="{{ entry.item.milkshake.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.milkshake.name }}">
+                <h3>{{ entry.item.milkshake.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_beverage_to_cart' 'milkshake' entry.item.milkshake.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_beverage_to_cart' 'milkshake' entry.item.milkshake.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more milkshake</a>
+            {% elif entry.type == 'snack' %}
+                <img src="{{ entry.item.Snacks.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.Snacks.name }}">
+                <h3>{{ entry.item.Snacks.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_food_to_cart' 'snack' entry.item.Snacks.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_food_to_cart' 'snack' entry.item.Snacks.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more snacks</a>
+            {% elif entry.type == 'side_dish' %}
+                <img src="{{ entry.item.Side_dish.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.Side_dish.name }}">
+                <h3>{{ entry.item.Side_dish.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_food_to_cart' 'side_dish' entry.item.Side_dish.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_food_to_cart' 'side_dish' entry.item.Side_dish.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more side dishes</a>
+            {% elif entry.type == 'pasta' %}
+                <img src="{{ entry.item.Pastas.image.url }}" style="width: 10%; height: 10%;" alt="{{ entry.item.Pastas.name }}">
+                <h3>{{ entry.item.Pastas.name }} ({{ entry.item.size.get_size_display }})</h3>
+                <p>Price: ₹{{ entry.price }}</p>
+                <p>Quantity:
+                    <form action="{% url 'add_food_to_cart' 'pasta' entry.item.Pastas.id entry.item.size.id 'decrement' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-minus"></i></button>
+                    </form>
+                    {{ entry.item.quantity }}
+                    <form action="{% url 'add_food_to_cart' 'pasta' entry.item.Pastas.id entry.item.size.id 'increment' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                    </form>
+                </p>
+                <a href="{% url 'all_coffees' %}" class="btn"><i class="fas fa-plus"></i> Add more pastas</a>
+            {% endif %}
+
+            <form action="{% url 'delete_from_cart' entry.item.id entry.type %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn"><i class="fas fa-trash-alt"></i> Delete</button>
+            </form>
+            
+            <p>Subtotal: ₹{{ entry.subtotal }}</p>
+        </div>
+    {% endfor %}
+
+    <h3>Total Price: ₹{{ total_price }}</h3>
+    <form action="{% url 'payment_view' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn"><i class="fas fa-credit-card"></i> PAY</button>
+    </form>
+
+    {% if delivery_info %}
+    <div class="delivery-info">
+        <h3>Delivery Address</h3>
+        <p><i class="fas fa-user"></i> {{ delivery_info.name }}</p>
+        <p><i class="fas fa-envelope"></i> {{ delivery_info.email }}</p>
+        <p><i class="fas fa-phone"></i> {{ delivery_info.phone_number }}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{ delivery_info.landmark }}</p>
+        <p><i class="fas fa-home"></i> {{ delivery_info.address }}</p>
+        <p><i class="fas fa-city"></i> {{ delivery_info.city }}</p>
+        <p><i class="fas fa-mail-bulk"></i> {{ delivery_info.zip_code }}</p>
+        <a href="{% url 'update_address_view' %}" class="btn"><i class="fas fa-edit"></i> Update Address</a> |
+        <a href="{% url 'delete_address_view' %}" class="btn"><i class="fas fa-trash-alt"></i> Delete Address</a>
+    </div>
+    {% else %}
+    <p>Add your delivery address first. <a href="{% url 'delivery_information_view' %}" class="btn"><i class="fas fa-plus"></i> Add Address</a></p>
+    {% endif %}
+{% else %}
+<p class="no-items-message">No items in your cart.</p> <div>
+        <a href="{% url 'main_page' %}" class="btn"><i class="fas fa-coffee"></i> Browse Coffees</a>  
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+    <div class="feedback-container">
+        <h2>Thank you for submitting your feedback</h2>
+        {% if output %}
+            <div class="feedback-result">
+                <p>Result: {{ output }}</p>
+            </div>
+        {% else %}
+            <div class="feedback-no-result">
+            <a href="{% url 'all_coffees' %}">Go back to Home</a>            
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

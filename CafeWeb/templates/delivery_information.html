@@ -1,0 +1,31 @@
+<!-- filepath: /c:/Users/Abhijeet/Cafe Web/CafeWeb/DeliveryInfo/templates/delivery_information.html -->
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Delivery Information{% endblock %}
+
+{% block content %}
+<h2>Delivery Information</h2>
+
+{% if delivery_info %}
+    <div class="delivery-info">
+        <h3>Your Address</h3>
+        <p><i class="fas fa-user"></i> {{ delivery_info.name }}</p>
+        <p><i class="fas fa-envelope"></i> {{ delivery_info.email }}</p>
+        <p><i class="fas fa-phone"></i> {{ delivery_info.phone_number }}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{ delivery_info.landmark }}</p>
+        <p><i class="fas fa-home"></i> {{ delivery_info.address }}</p>
+        <p><i class="fas fa-city"></i> {{ delivery_info.city }}</p>
+        <p><i class="fas fa-mail-bulk"></i> {{ delivery_info.zip_code }}</p>
+        <a href="{% url 'update_address_view' %}" class="btn"><i class="fas fa-edit"></i> Update Address</a> |
+        <a href="{% url 'delete_address_view' %}" class="btn"><i class="fas fa-trash-alt"></i> Delete Address</a>
+    </div>
+{% else %}
+    <form method="post" class="delivery-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit</button>
+    </form>
+{% endif %}
+
+{% endblock %}

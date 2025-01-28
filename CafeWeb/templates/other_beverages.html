@@ -1,0 +1,136 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home - Cafe Website{% endblock %}
+
+{% block content %}
+
+<div class="search-bar" >
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search..."
+    onkeyup="searchItems()"
+    />
+</div>
+
+
+<h2 class="headings">Our Juices</h2>
+<div
+class="coffee-items"
+id="juiceItems">
+{% for juice in juices %}
+<div
+class="coffee-item">
+<img
+    class="images"
+    src="{{ juice.image.url }}"
+    alt="Juice Image"/>
+<h2 class="names" style="color: #333; font-size: 1.5rem">{{ juice.name }}</h2>
+<div class="dropdown" style="position: relative">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.juice and price.juice.id == juice.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'juice' juice.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+
+
+<h2 class="headings">Our Hot Chocolates</h2>
+<div
+class="coffee-items"
+id="juiceItems">
+{% for hot_chocolate in hot_chocolates %}
+<div
+class="coffee-item">
+<img
+    class="images"
+    src="{{ hot_chocolate.image.url }}"
+    alt="Hot Chocolate Image"/>
+<h2 class="names">{{ hot_chocolate.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.hot_chocolate and price.hot_chocolate.id == hot_chocolate.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'hot_chocolate' hot_chocolate.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+
+
+<h2 class="headings">Our Milkshakes </h2>
+<div
+class="coffee-items"
+id="juiceItems">
+{% for milkshake in milkshakes %}
+<div
+class="coffee-item"
+>
+<img class="images"
+    src="{{ milkshake.image.url }}"
+    alt="Milkshake Image"/>
+<h2 class="names">{{ milkshake.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.milkshake and price.milkshake.id == milkshake.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'milkshake' milkshake.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+{% if not juices %} 
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+{% if not hot_chocolates %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+{% if not milkshakes %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+<p id="noResultsMessage" class="Notfound" style="display: none;">No results found.</p>
+
+
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

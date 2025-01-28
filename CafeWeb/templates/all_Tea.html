@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home - Cafe Website{% endblock %}
+
+{% block content %}
+
+<div class="search-bar" >
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search..."
+    onkeyup="searchItems()"
+    />
+    </div>
+<h2 class="headings">Our Teas</h2>
+<div
+class="coffee-items"
+id="teaItems">
+{% for tea in teas %}
+<div class="coffee-item">
+<img class="images" src="{{ tea.image.url }}" alt="Tea Image"/>
+<h2 class="names" >{{ tea.name }}</h2>
+<div class="dropdown">
+    <button class="dropbtn">Add To Cart</button>
+    <div
+    class="dropdown-content">
+    {% for price in tea_prices %}
+    {% if price.tea.id == tea.id %}
+    <a class="addLink"
+        href="{% url 'add_tea_to_cart' tea.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+{% if not teas %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+<p id="noResultsMessage" class="Notfound" style="display: none;">No results found.</p>
+
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

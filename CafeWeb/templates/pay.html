@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center; font-size: 2em; color: #333;">Payment</h1>
+  <form method="post" action="{% url 'payment_view' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" style="background-color: #764248; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+      Confirm details
+    </button>
+  </form>
+</div>
+{% endblock %}

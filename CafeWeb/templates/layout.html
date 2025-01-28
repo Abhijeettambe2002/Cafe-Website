@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cafe Website{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/deliveryInfo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stores.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layoutstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mainpagestyle.css' %}">
+</head>
+<body>
+    <header>
+        <div class="address">
+            <a href="{% url 'delivery_information_view' %}"><i class="fas fa-map-marker-alt"></i>Add Address</a>
+            <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+
+        </div>
+        <h1>Abhi Cafe</h1>
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'main_page' %}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{% url 'cart_view' %}"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="{% url 'coffee_store_view' %}"><i class="fas fa-store"></i> Locate Our Cafe's</a></li>
+                <li><a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% comment %} <section class="hero" id="home">
+    </section> {% endcomment %}
+    {% block content %}{% endblock %}
+    <div class="footer">
+        <section class="section menu" id="menu">
+            <div class="footerLinks">
+                <a href="{% url 'main_page' %}">
+                    <h1><i class="fas fa-home"></i>Home</h1>
+                </a>
+            <h2>Explore our delicious offerings!</h2>
+            </div>
+            <div class="footerLinks">
+            <a href="{% url 'cart_view' %}">
+                <h1><i class="fas fa-shopping-cart"></i> Cart</h1>
+            </a>
+            <h2>Explore our delicious offerings!</h2>
+            </div>
+            <div class="footerLinks">
+            <a href="{% url 'coffee_store_view' %}">
+                <h1><i class="fas fa-store"></i> Locate Our Cafe's</h1>
+            </a>
+            <h2>Learn more about our story and passion for coffee.</h2>
+            </div>
+            <div class="footerLinks">
+
+            <a href="{% url 'contact_us' %}">
+                <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+            </a>
+            <h2>Get in touch with us for any inquiries or reservations.</h2>
+            </div>
+
+        </section>
+    </div >
+    <script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>

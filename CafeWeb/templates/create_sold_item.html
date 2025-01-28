@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Sold Item</title>
+</head>
+<body>
+    <h1>Create Sold Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="user">User:</label>
+        <select name="user" id="user">
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="coffee">Coffee:</label>
+        <select name="coffee" id="coffee">
+            {% for coffee in coffees %}
+            <option value="{{ coffee.id }}">{{ coffee.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="size">Size:</label>
+        <select name="size" id="size">
+            {% for size in sizes %}
+            <option value="{{ size.id }}">{{ size.get_size_display }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity"><br>
+
+        <label for="price">Price:</label>
+        <input type="number" step="0.01" name="price" id="price"><br>
+
+        <label for="amount_paid">Amount Paid:</label>
+        <input type="number" step="0.01" name="amount_paid" id="amount_paid"><br>
+
+        <label for="payment_method">Payment Method:</label>
+        <input type="text" name="payment_method" id="payment_method"><br>
+
+        <label for="card_num">Card Number:</label>
+        <input type="text" name="card_num" id="card_num"><br>
+
+        <label for="expiry_date">Expiry Date:</label>
+        <input type="date" name="expiry_date" id="expiry_date"><br>
+
+        <label for="upi">UPI:</label>
+        <input type="text" name="upi" id="upi"><br>
+
+        <button type="submit">Create Sold Item</button>
+    </form>
+</body>
+</html>

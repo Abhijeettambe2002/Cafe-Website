@@ -1,0 +1,55 @@
+.heading{
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+    color: #4CAF50;
+}
+.form{
+    display: flex; 
+    justify-content: center;
+    margin: 20px;
+}
+.formstyle{
+    width: 300px;
+}
+.butn{
+    width: 100%; 
+    padding: 10px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px;
+
+}
+.found{
+    text-align: center; 
+    margin: 20px;
+
+
+}
+.foundmessage{
+    font-family: 'Arial', 
+    sans-serif; 
+    color: #555
+}
+.storelist{
+    font-family: 'Arial', sans-serif; 
+    color: #555;
+
+}
+.list{
+    list-style-type: none; 
+    padding: 0;
+
+}
+.notfound{
+    margin: 10px 0; 
+    padding: 10px; 
+    border-bottom: 1px solid #ddd;
+
+}
+.notfoundmessage{
+    text-align: center; 
+    margin: 20px;
+
+}

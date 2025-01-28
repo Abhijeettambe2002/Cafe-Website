@@ -1,0 +1,281 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home - Cafe Website{% endblock %}
+
+{% block content %}
+
+
+<div class= "whole_content">
+
+    <div class="category">
+        <figure>
+            <a href="{% url 'all_coffees' %}">
+                <img class="banner1" src="{% static 'images/banner.png' %}" alt="Coffee" width="400" height="400">
+            </a>
+            <figcaption><a href="{% url 'all_coffees' %}">Coffee</a></figcaption>
+        </figure>
+        <figure>
+            <a href="{% url 'all_Tea' %}">
+                <img class="banner2" src="{% static 'images/banner2.png' %}" alt="Tea" width="400" height="400">
+            </a>
+            <figcaption><a href="{% url 'all_Tea' %}">Tea</a></figcaption>
+        </figure>
+        <figure>
+            <a href="{% url 'other_beverages' %}">
+                <img class="banner1" src="{% static 'images/banner3.png' %}" alt="Other beverage" width="400" height="400">
+            </a>
+            <figcaption><a href="{% url 'other_beverages' %}">Other beverage</a>
+            </figcaption>
+        </figure>
+        <figure>
+            <a href="{% url 'all_food' %}">
+                <img class="banner1" src="{% static 'images/banner4.png' %}" alt="Food" width="400" height="400">
+            </a>
+            <figcaption><a href="{% url 'all_food' %}">Snacks</a></figcaption>
+        </figure>
+    </div>
+<h2 class="headings">Bestselling Coffees</h2>
+<div
+class="coffee-items"id="coffeeItems">
+{% for cafe in coffees %}
+<div class="coffee-item">
+<img src="{{ cafe.image.url }}" alt="Coffee Image" class ="images">
+<h2 class="names">{{ cafe.name }}</h2>
+<div class="dropdown">
+<button class="dropbtn">Add To Cart</button>
+<div class="dropdown-content">
+{% for price in coffee_prices %}
+{% if price.coffee.id == cafe.id %}
+    <a class="addLink" href="{% url 'add_to_cart' cafe.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+{% endif %}
+{% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="more_item">
+    <a href="{% url 'all_coffees' %}">
+        More  <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+<h2 class="headings">Bestselling Teas</h2>
+<div
+class="coffee-items"
+id="teaItems">
+{% for tea in teas %}
+<div class="coffee-item">
+<img class="images" src="{{ tea.image.url }}" alt="Tea Image"/>
+<h2 class="names" >{{ tea.name }}</h2>
+<div class="dropdown">
+    <button class="dropbtn">Add To Cart</button>
+    <div
+    class="dropdown-content">
+    {% for price in tea_prices %}
+    {% if price.tea.id == tea.id %}
+    <a class="addLink"
+        href="{% url 'add_tea_to_cart' tea.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class= "more_item"><a href="{% url 'all_Tea' %}"> More <i class="fas fa-arrow-right"></i></a></div>
+
+<h2 class="headings">Bestselling Beverages</h2>
+<div
+class="coffee-items"
+id="juiceItems">
+{% for juice in juices %}
+<div
+class="coffee-item">
+<img
+    class="images"
+    src="{{ juice.image.url }}"
+    alt="Juice Image"/>
+<h2 class="names" style="color: #333; font-size: 1.5rem">{{ juice.name }}</h2>
+<div class="dropdown" style="position: relative">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.juice and price.juice.id == juice.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'juice' juice.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+
+
+
+{% if hot_chocolates %}
+<div
+class="coffee-item" id="hotChocolateItems">
+<img
+    class="images"
+    src="{{ hot_chocolates.image.url }}"
+    alt="Hot Chocolate Image"/>
+<h2 class="names">{{ hot_chocolates.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.hot_chocolate and price.hot_chocolate.id == hot_chocolate.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'hot_chocolate' hot_chocolate.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endif %}
+
+
+
+{% if milkshakes %}
+<div
+class="coffee-item" id="milkshakeItems">
+<img class="images"
+    src="{{ milkshakes.image.url }}"
+    alt="Milkshake Image"/>
+<h2 class="names">{{ milkshakes.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in beverage_prices %}
+    {% if price.milkshake and price.milkshake.id == milkshake.id %}
+    <a class="addLink"
+        href="{% url 'add_beverage_to_cart' 'milkshake' milkshake.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endif %}
+</div>
+<div class= "more_item"><a href="{% url 'other_beverages' %}"> More<i class="fas fa-arrow-right"></i></a></div>
+
+
+<h2 class="headings">Bestselling Snacks</h2>
+<div
+class="coffee-items"
+id="snackItems"
+>
+{% for snack in snacks %}
+<div
+class="coffee-item" id="snackItems">
+<img class="images"
+    src="{{ snack.image.url }}"
+    alt="Snack Image"/>
+<h2 class="names">{{ snack.name }}</h2>
+<div class="dropdown">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Snacks and price.Snacks.id == snack.id %}
+    <a class="addLink"
+        href="{% url 'add_food_to_cart' 'snack' snack.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+
+
+{% if side_dishes %}
+<div
+class="coffee-item" id="sideDishItems">
+<img class="images"
+    src="{{ side_dishes.image.url }}"
+    alt="Side Dish Image"/>
+<h2 class="names">{{ side_dishes.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Side_dish and price.Side_dish.id == side_dish.id %}
+    <a class="addLink"
+        href="{% url 'add_food_to_cart' 'side_dish' side_dish.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endif %}
+
+
+{% if pastas %}
+<div
+class="coffee-item" id="pastaItems">
+<img class="images"
+    src="{{ pastas.image.url }}"
+    alt="Pasta Image"/>
+<h2 class="names">{{ pastas.name }}</h2>
+<div class="dropdown" style="position: relative">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Pastas and price.Pastas.id == pasta.id %}
+    <a class="names"
+        href="{% url 'add_food_to_cart' 'pasta' pasta.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endif %}
+</div>
+<div class= "more_item"><a href="{% url 'all_food' %}"> More <i class="fas fa-arrow-right"></i> </a></div>
+</div>
+{% if not coffees %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+<script src="{% static 'js/search.js' %}"></script>
+
+{% endblock %}

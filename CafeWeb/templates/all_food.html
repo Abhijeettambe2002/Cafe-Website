@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Home - Cafe Website{% endblock %}
+
+{% block content %}
+
+<div class="search-bar" >
+    <input
+    type="text"
+    id="searchInput"
+    placeholder="Search..."
+    onkeyup="searchItems()"
+    />
+</div>
+
+<div id="noResultsMessage" style="display: none;">
+    <p>No results found.</p>
+</div>
+
+<div class= "whole_content">
+<h2 class="headings">Our Snacks</h2>
+<div
+class="coffee-items"
+id="snackItems"
+>
+{% for snack in snacks %}
+<div
+class="coffee-item"
+>
+<img class="images"
+    src="{{ snack.image.url }}"
+    alt="Snack Image"/>
+<h2 class="names">{{ snack.name }}</h2>
+<div class="dropdown">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Snacks and price.Snacks.id == snack.id %}
+    <a class="addLink"
+        href="{% url 'add_food_to_cart' 'snack' snack.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+
+
+<h2 class="headings">Our Side Dishes</h2>
+<div
+class="coffee-items"
+id="snackItems"
+>
+{% for side_dishe in side_dishes %}
+<div
+class="coffee-item"
+>
+<img class="images"
+    src="{{ side_dishe.image.url }}"
+    alt="Side Dish Image"/>
+<h2 class="names">{{ side_dishe.name }}</h2>
+<div class="dropdown" >
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Side_dish and price.Side_dish.id == side_dish.id %}
+    <a class="addLink"
+        href="{% url 'add_food_to_cart' 'side_dish' side_dish.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+
+<h2 class="headings">Our Pastas</h2>
+<div
+class="coffee-items"
+id="snackItems"
+>
+{% for pasta in pastas %}
+<div
+class="coffee-item">
+<img class="images"
+    src="{{ pasta.image.url }}"
+    alt="Pasta Image"/>
+<h2 class="names">{{ pasta.name }}</h2>
+<div class="dropdown" style="position: relative">
+    <button
+    class="dropbtn">
+    Add To Cart
+    </button>
+    <div
+    class="dropdown-content">
+    {% for price in food_prices %}
+    {% if price.Pastas and price.Pastas.id == pasta.id %}
+    <a class="names"
+        href="{% url 'add_food_to_cart' 'pasta' pasta.id price.size.id 'increment' %}">
+        {{ price.size.get_size_display }}: {{ price.price }} Rs
+    </a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+
+{% if not snacks %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+{% if not side_dishes %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+{% if not pastas %}
+<p class="Notfound">No results found.</p>
+{% endif %}
+
+<p id="noResultsMessage" class="Notfound" style="display: none;">No results found.</p>
+
+<script src="{% static 'js/search.js' %}"></script>
+
+{% endblock %}

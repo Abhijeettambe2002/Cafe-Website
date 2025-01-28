@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Payment Success{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);height:500px;display: flex;
+    flex-direction: column;
+    justify-content: center;">
+  <h1 style="text-align: center; font-size: 2em; color: #333;">Payment Successful</h1>
+  <p style="font-size: 1.2em; color: #555;text-align: center; ">
+    Thank you for your payment!
+    <br>
+    Coffee will be dileverd soon
+  </p>
+  <a href="{% url 'all_coffees' %}" style="text-align: center;">GO Back to Home</a>
+</div>
+{% endblock %}

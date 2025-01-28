@@ -1,0 +1,15 @@
+<!-- filepath: /c:/Users/Abhijeet/Cafe Web/CafeWeb/DeliveryInfo/templates/delete_address.html -->
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Delete Address{% endblock %}
+
+{% block content %}
+<h2>Delete Address</h2>
+<p>Are you sure you want to delete your address?</p>
+<form method="post" class="delete-form">
+    {% csrf_token %}
+    <button type="submit" class="btn"><i class="fas fa-trash-alt"></i> Delete</button>
+    <a href="{% url 'main_page' %}" class="btn"><i class="fas fa-times"></i> Cancel</a>
+</form>
+{% endblock %}

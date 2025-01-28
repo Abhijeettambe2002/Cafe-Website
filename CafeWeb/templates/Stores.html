@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1 class="heading">Locate Our Cafe's in you City</h1>
+  <div class= "form" >
+    <form method="post" class="formstyle" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="butn" type="submit" >Search Stores</button>
+    </form>
+  </div>
+  {% if stores is not None %}
+    {% if stores %}
+      <div class="found">
+          <h2 class="foundmessage" >Cafe Found</h2>
+          <ul class="storelist" >
+              {% for store in stores %}
+                  <li class="list">
+                      <strong>{{ store.name }}</strong> - {{ store.location }}
+                  </li>
+              {% endfor %}
+          </ul>
+      </div>
+    {% else %}
+      <div class= "notfound" >
+          <h2 class="notfoundmessage"style="font-family: 'Arial', sans-serif; color: #555;">No Cafe's available in {{ city }} yet</h2>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
