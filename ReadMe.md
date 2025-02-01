@@ -9,7 +9,6 @@ CafeWeb is a full stack comprehensive web application designed to manage and str
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -19,7 +18,7 @@ CafeWeb is a full stack comprehensive web application designed to manage and str
 - **Add to Cart Feature**: Users can add items to their cart before proceeding to checkout.
 - **Payment Feature**: Users can make payments with various payment modes.
 - **User Authentication**: Secure user authentication and authorization.
-- **Admin Interface**: Easy-to-use Django admin interface for managing the application.
+- **Admin Interface**: Easy-to-use Django admin interface for adding products,products pricing and track users order and sold items 
 ## Project Structure
 
 - [CafeWeb](http://_vscodecontentref_/1): Main project directory
@@ -104,6 +103,3 @@ We welcome contributions to improve this project. To contribute, please follow t
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](http://_vscodecontentref_/4) file for more details.
