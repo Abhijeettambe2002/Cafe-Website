@@ -59,14 +59,14 @@ class="coffee-item"
 class="coffee-items"
 id="snackItems"
 >
-{% for side_dishe in side_dishes %}
+{% for side_dish in side_dishes %}
 <div
 class="coffee-item"
 >
 <img class="images"
-    src="{{ side_dishe.image.url }}"
+    src="{{ side_dish.image.url }}"
     alt="Side Dish Image"/>
-<h2 class="names">{{ side_dishe.name }}</h2>
+<h2 class="names">{{ side_dish.name }}</h2>
 <div class="dropdown" >
     <button
     class="dropbtn">

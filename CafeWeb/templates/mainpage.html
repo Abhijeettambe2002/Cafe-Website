@@ -230,9 +230,9 @@ class="coffee-item" id="sideDishItems">
     <div
     class="dropdown-content">
     {% for price in food_prices %}
-    {% if price.Side_dish and price.Side_dish.id == side_dish.id %}
+    {% if price.Side_dish and price.Side_dish.id == side_dishes.id %}
     <a class="addLink"
-        href="{% url 'add_food_to_cart' 'side_dish' side_dish.id price.size.id 'increment' %}">
+        href="{% url 'add_food_to_cart' 'side_dish' side_dishes.id price.size.id 'increment' %}">
         {{ price.size.get_size_display }}: {{ price.price }} Rs
     </a>
     {% endif %}
@@ -258,9 +258,9 @@ class="coffee-item" id="pastaItems">
     <div
     class="dropdown-content">
     {% for price in food_prices %}
-    {% if price.Pastas and price.Pastas.id == pasta.id %}
+    {% if price.Pastas and price.Pastas.id == pastas.id %}
     <a class="names"
-        href="{% url 'add_food_to_cart' 'pasta' pasta.id price.size.id 'increment' %}">
+        href="{% url 'add_food_to_cart' 'pasta' pastas.id price.size.id 'increment' %}">
         {{ price.size.get_size_display }}: {{ price.price }} Rs
     </a>
     {% endif %}
